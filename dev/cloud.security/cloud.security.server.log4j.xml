@@ -7,7 +7,7 @@
 		</layout>
 	</appender>
 
-	<appender name="DailyRollingFileAppender" class="	">
+	<appender name="DailyRollingFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="Append" value="true" />
 		<param name="File" value="c:/temp/cloud.security.service.log" />
 		<param name="MaxBackupIndex" value="3" />
