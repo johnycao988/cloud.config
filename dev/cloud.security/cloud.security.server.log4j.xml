@@ -19,7 +19,7 @@
 	<appender name="SocketAppender" class="org.apache.log4j.net.SocketAppender">
 		<param name="threshold" value="fatal" />
 		<param name="remoteHost" value="10.39.101.226" />
-		<param name="port" value="3456" />
+		<param name="port" value="345" />
 		<param name="locationInfo" value="true" />
 	</appender>
 
