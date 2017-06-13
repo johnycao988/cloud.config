@@ -8,7 +8,7 @@
 	</appender>
 
 	<appender name="DailyRollingFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="Append" value="false" /> 
+		<param name="Append" value="false" />
 		<param name="File" value="c:/temp/cloud.security.service.log" />
 		<param name="MaxBackupIndex" value="3" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -16,23 +16,26 @@
 		</layout>
 	</appender>
 
-	<appender name="SocketAppender" class="org.apache.log4j.net.SocketAppender">
-		<param name="threshold" value="fatal" />
-		<param name="remoteHost" value="10.39.101.226" />
-		<param name="port" value="3456" />
-		<param name="locationInfo" value="true" />
+	<appender name="SocketAppender"	class="org.apache.log4j.net.SocketAppender">
+		<param name="remoteHost" value="10.39.101.226" /><!-- 这是远程log server -->
+		<param name="port" value="3456" /><!-- 这是远程log server port -->
+		<param name="Threshold" value="INFO" /><!-- log 级别 -->
+		<param name="ReconnectionDelay" value="1000" />
+		<param name="LocationInfo" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c -%-4r [%t] %-5p %x - %m%n" />
+		</layout>
 	</appender>
 
 	<category name="cloud.security.service" additivity="true">
 		<priority value="debug" />
-		<appender-ref ref="ConsoleAppender" />
-		<appender-ref ref="SocketAppender" />
+	 	<appender-ref ref="SocketAppender" />
 		<appender-ref ref="DailyRollingFileAppender" />
 	</category>
 
 	<root>
 		<priority value="debug" />
-		<appender-ref ref="ConsoleAppender" /> 
+		<appender-ref ref="ConsoleAppender" />
 	</root>
 
 </log4j:configuration>
