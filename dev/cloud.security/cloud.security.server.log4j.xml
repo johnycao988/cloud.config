@@ -34,13 +34,6 @@
 		<appender-ref ref="ELKAppender" />
 	</logger>
 
- 
-
-	<category name="cloud.security.service" additivity="true">
-		<priority value="debug" />
-		<appender-ref ref="SocketAppender" />
-		<appender-ref ref="DailyRollingFileAppender" />
-	</category>
 
 	<root>
 		<priority value="debug" />
