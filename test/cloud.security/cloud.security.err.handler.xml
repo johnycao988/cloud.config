@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<errHandler deafultLanguage="EN">
+  <SECU-00001>
+    <EN errMsg="Invalide User Id or Password"/> 
+  </SECU-00001>	 
+  <SECU-00002>
+    <EN errMsg="Property:[%] is not set."/> 
+  </SECU-00002>	
+  
+  <SECU-00003>
+    <EN errMsg="Service:[%] failed to initialize."/> 
+  </SECU-00003>
+  
+  <SECU-00004>
+    <EN errMsg="Invalide User Id or Auth code."/> 
+  </SECU-00004>
+  
+   <SECU-00005>
+    <EN errMsg="Invalide Inquire code."/> 
+  </SECU-00005>
+  	
+</errHandler>
