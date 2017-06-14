@@ -28,14 +28,14 @@
 	</appender>
 
 	<logger name="cloud.security.client">
-		<level value="DEBUG" />
+		<level value="debug" />
 		<appender-ref ref="DailyRollingFileAppender" />
 		<appender-ref ref="ELKAppender" />
 	</logger>
 
 
 	<root>
-		<priority value="debug" />
+		<priority value="info" />
 		<appender-ref ref="ConsoleAppender" />
 	</root>
 
