@@ -9,9 +9,8 @@
 
 	<appender name="DailyRollingFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="Append" value="true" />
-		<param name="MaxBackupIndex" value="2" />		
+		<param name="maxBackupIndex" value="2" />		
 		<param name="File" value="c:/temp/cloud.security.client.log" />
-		<param name="MaxBackupIndex" value="3" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d{yyyy-MM-dd hh:mm:ss}:%p %t %c - %m%n" />
 		</layout>
