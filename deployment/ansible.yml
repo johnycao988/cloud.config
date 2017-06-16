@@ -1,5 +1,5 @@
 ---
-- hosts: webservers
+- hosts: all_servers
   remote_user: jenkins
   tasks:
   - name: Fetch cloud config files...
