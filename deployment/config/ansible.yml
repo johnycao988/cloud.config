@@ -4,6 +4,4 @@
   tasks:
   - name: Fetch cloud config files...
     shell: cd /cloud.config && git fetch && git merge origin/master 
-    
-  - name: Re-start Security/Config Server containers...
-    shell: docker restart cloud.config.service cloud.security.service  cloud.security.client
+ 
