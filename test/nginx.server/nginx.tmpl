@@ -26,6 +26,12 @@ http {
     server {{.Address}}:{{.Port}}  weight=1; 
     {{end}} 
  }
+ 
+    upstream cloud-security-client {   
+   {{range service "cloud-security-client-3000"}}
+    server {{.Address}}:{{.Port}}  weight=1; 
+    {{end}} 
+ }
         ##
         # Basic Settings
         ##
@@ -115,6 +121,19 @@ http {
         location /{
 
            proxy_pass http://cloud-config-service/;
+        
+        }  
+  }
+  
+    server {
+
+        listen       3001;
+
+        server_name  2;
+
+        location /{
+
+           proxy_pass http://cloud-security-client/;
         
         }  
   }
