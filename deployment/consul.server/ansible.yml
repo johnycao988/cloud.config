@@ -1,6 +1,6 @@
 ---
 - hosts: all_servers
-  remote_user: jenkins
+  remote_user: root
   tasks:
   - name: Remove Consul Server container ...
     shell: docker rm -f consul.server   
