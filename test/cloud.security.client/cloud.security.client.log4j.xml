@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<log4j:configuration>
+	<appender name="ConsoleAppender" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd hh:mm:ss}:%p %t %c - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="DailyRollingFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Append" value="true" /> 	
+		<param name="File" value="/logs/cloud.security.client.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd hh:mm:ss}:%p %t %c - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="ELKAppender"
+		class="org.apache.log4j.net.SocketAppender">
+		<param name="remoteHost" value="10.39.101.226" /><!-- 这是远程log server -->
+		<param name="port" value="3456" /><!-- 这是远程log server port -->
+		<param name="Threshold" value="INFO" /><!-- log 级别 -->
+		<param name="ReconnectionDelay" value="1000" />
+		<param name="LocationInfo" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c -%-4r [%t] %-5p %x - %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="cloud.security.client">
+		<level value="debug" />
+		<appender-ref ref="DailyRollingFileAppender" />
+		<appender-ref ref="ELKAppender" />
+	</logger>
+
+
+	<root>
+		<priority value="info" />
+		<appender-ref ref="ConsoleAppender" />
+	</root>
+
+</log4j:configuration>
+
+
+
+<!-- log4j2 configurations <?xml version="1.0" encoding="UTF-8"?> <configuration 
+	status="error" monitorInterval="30"> <appenders> <Console name="Console" 
+	target="SYSTEM_OUT"> <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/> 
+	<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/> 
+	</Console> <RollingFile name="RollingFile" fileName="/logs/cloud.security.service.log" 
+	filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz"> <PatternLayout 
+	pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/> 
+	<SizeBasedTriggeringPolicy size="50MB"/> <DefaultRolloverStrategy max="20"/> 
+	</RollingFile> <Socket name="logstash" host="10.39.101.226" port="3456" immediateFlush="false" 
+	connectTimeoutMillis="5000" protocol="TCP" activity="false"> <PatternLayout 
+	pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/> 
+	</Socket> <ElasticAppender name="ELK" uri="native://10.39.101.226:9200" cluster="elasticsearch" 
+	/> </appenders> <loggers> <root level="trace"> <appender-ref ref="Console"/> 
+	</root> <logger name="cloud.security.service" level="debug"> <appender-ref 
+	ref="RollingFile"/> </logger> </loggers> </configuration> log4j2 -->
