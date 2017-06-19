@@ -27,9 +27,9 @@
   hosts: "{{MASTER_SERVER}}"
   remote_user: jenkins
   tasks:
-    - name: Build Consul Master Server container....
+    - name: docker run  -d --name consul.server -h consul.node1 -v {{MNT_FOLDER}}:/data   -p 8300:8300   -p 8301:8301  -p 8301:8301/udp  -p 8302:8302  -p 8302:8302/udp  -p 8400:8400   -p 8500:8500   -p 8600:53/udp --restart=always  {{DOCKER_REP_NAME}} -server -advertise {{MASTER_SERVER_IP}}-bootstrap-expect 2
       shell: docker run  -d --name consul.server -h consul.node1 -v {{MNT_FOLDER}}:/data   -p 8300:8300   -p 8301:8301  -p 8301:8301/udp  -p 8302:8302  -p 8302:8302/udp  -p 8400:8400   -p 8500:8500   -p 8600:53/udp --restart=always  {{DOCKER_REP_NAME}} -server -advertise {{MASTER_SERVER_IP}}-bootstrap-expect 2       
-    - name: Build Service Registrator container on Master ...
+    - name: docker run -it --restart=always --name service.registrator -h {{MASTER_SERVER_IP}} -d -v /var/run/docker.sock:/tmp/docker.sock gliderlabs/registrator:latest consul://{{MASTER_SERVER_IP}}:8500
       shell: docker run -it --restart=always --name service.registrator -h {{MASTER_SERVER_IP}} -d -v /var/run/docker.sock:/tmp/docker.sock gliderlabs/registrator:latest consul://{{MASTER_SERVER_IP}}:8500   
  
 - vars_files:
@@ -37,10 +37,10 @@
   hosts: "{{SLAVE_SERVER1}}"
   remote_user: jenkins
   tasks:
-    - name: Build Consul slave1 container...
-      shell:  docker run -d --name consul.server -h consul.node2 -v {{MNT_FOLDER}}:/data  -p 8300:8300    -p 8301:8301     -p 8301:8301/udp     -p 8302:8302     -p 8302:8302/udp     -p 8400:8400     -p 8500:8500   -p 8600:53/udp  --restart=always {{DOCKER_REP_NAME}} -server -advertise {{SLAVE_SERVER1_IP}} -join {{MASTER_SERVER_IP}}
+    - name: docker run -d --name consul.server -h consul.node2 -v {{MNT_FOLDER}}:/data  -p 8300:8300    -p 8301:8301     -p 8301:8301/udp     -p 8302:8302     -p 8302:8302/udp     -p 8400:8400     -p 8500:8500   -p 8600:53/udp  --restart=always {{DOCKER_REP_NAME}} -server -advertise {{SLAVE_SERVER1_IP}} -join {{MASTER_SERVER_IP}}
+      shell: docker run -d --name consul.server -h consul.node2 -v {{MNT_FOLDER}}:/data  -p 8300:8300    -p 8301:8301     -p 8301:8301/udp     -p 8302:8302     -p 8302:8302/udp     -p 8400:8400     -p 8500:8500   -p 8600:53/udp  --restart=always {{DOCKER_REP_NAME}} -server -advertise {{SLAVE_SERVER1_IP}} -join {{MASTER_SERVER_IP}}
  
-    - name: Build Service Registrator container on Slave1 server...
+    - name: docker run -it --restart=always --name service.registrator -h {{SLAVE_SERVER1_IP}} -d -v /var/run/docker.sock:/tmp/docker.sock gliderlabs/registrator:latest consul://{{MASTER_SERVER_IP}}:8500
       shell: docker run -it --restart=always --name service.registrator -h {{SLAVE_SERVER1_IP}} -d -v /var/run/docker.sock:/tmp/docker.sock gliderlabs/registrator:latest consul://{{MASTER_SERVER_IP}}:8500   
 
 - vars_files:
