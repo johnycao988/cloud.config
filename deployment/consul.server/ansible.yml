@@ -35,7 +35,7 @@
  
 - vars_files:
      - vars.yml
-  hosts: "{{MASTER_SERVER}}"
+  hosts: "{{SLAVE_SERVER1}}"
   remote_user: jenkins
   tasks:
     - name: Build Consul slave1 container...
