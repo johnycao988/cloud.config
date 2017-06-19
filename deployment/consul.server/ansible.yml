@@ -14,7 +14,10 @@
     - name: Remove Consul Server containers ...
       shell: docker rm -f consul.server    
       ignore_errors: yes 
-
+    - name: Remove mnt folder ...
+      sudo: yes
+      shell: sudo rm -r MNT_FOLDER   
+      ignore_errors: yes 
 
      
 
