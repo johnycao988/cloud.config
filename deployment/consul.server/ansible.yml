@@ -9,14 +9,10 @@
       shell: service consul-template stop    
       ignore_errors: yes 
     - name: Remove Service Registrator containers ...
-      shell:   docker rm -f service.registrator   
+      shell: docker rm -f service.registrator   
       ignore_errors: yes 
     - name: Remove Consul Server containers ...
       shell: docker rm -f consul.server    
-      ignore_errors: yes 
-    - name: Remove mnt folders ...
-      sudo: yes
-      shell: sudo rm -r {{MNT_FOLDER}}    
       ignore_errors: yes 
 
 
