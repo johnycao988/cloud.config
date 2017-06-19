@@ -4,4 +4,3 @@
   tasks:
   - name: Fetch cloud config files...
     shell: cd /cloud.config && git fetch && git merge origin/master 
- 

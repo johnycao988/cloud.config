@@ -1,6 +1,6 @@
 ---
 - name: Remove relevant
-- vars_files:
+  vars_files:
      - vars.yml
   hosts: all_servers
   remote_user: jenkins
