@@ -1,6 +1,5 @@
 ---
-- name: Remove relevant containers and folders...
-  vars_files:
+- vars_files:
      - vars.yml
   hosts: "{{ALL_CONSUL_SERVERS}}"
   remote_user: jenkins
@@ -43,7 +42,14 @@
  
     - name: Build Service Registrator container on Slave1 server...
       shell: docker run -it --restart=always --name service.registrator -h {{SLAVE_SERVER1_IP}} -d -v /var/run/docker.sock:/tmp/docker.sock gliderlabs/registrator:latest consul://{{MASTER_SERVER_IP}}:8500   
- 
+
+- vars_files:
+     - vars.yml
+  hosts: "{{MASTER_SERVER}}"
+  remote_user: jenkins
+  tasks:
+    - name: Start consul-template service on Master server...
+      shell: service consul-template start    
  
      
 
