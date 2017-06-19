@@ -2,7 +2,7 @@
 - name: Remove relevant
   vars_files:
      - vars.yml
-  hosts: all_servers
+  hosts: {{ALL_CONSUL_SERVERS}}
   remote_user: jenkins
   tasks:
     - name: Stop consul-template service ...
@@ -16,7 +16,7 @@
       ignore_errors: yes 
     - name: Remove mnt folder ...
       sudo: yes
-      shell: sudo rm -r MNT_FOLDER   
+      shell: sudo rm -r {{MNT_FOLDER}}   
       ignore_errors: yes 
 
      
