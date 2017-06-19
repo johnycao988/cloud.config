@@ -2,7 +2,7 @@
 - name: Remove relevant
   vars_files:
      - vars.yml
-  hosts: {{ALL_CONSUL_SERVERS}}
+  hosts: all_servers
   remote_user: jenkins
   tasks:
     - name: Stop consul-template service ...
