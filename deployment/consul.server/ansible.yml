@@ -1,34 +1,24 @@
 ---
-- hosts: all_servers
+- hosts: {{all_servers}}
   remote_user: jenkins
+  vars_files:
+     - vars.yml
   tasks:
+  - name: Stop consul-template service ...
+    shell: service consul-template stop    
+    ignore_errors: yes 
+  - name: Remove Service Registrator containers ...
+    shell:   docker rm -f service.registrator   
+    ignore_errors: yes 
   - name: Remove Consul Server containers ...
     shell: docker rm -f consul.server    
     ignore_errors: yes 
+  - name: Remove mnt folders ...
+    sudo: yes
+    shell: sudo rm -r {{MNT_FOLDER}}    
+    ignore_errors: yes 
 
-  - name: Remove Service Registrator containers ...
-    shell:   docker rm -f service.registrator   
-    ignore_errors: yes     
 
-- hosts: 101_226_server    
-  remote_user: jenkins
-  tasks:
-  - name: Build Consul Server container...
-    shell: docker run  -d --name consul.server -h consul.node1 -v /cloud.config/deployment/consul.server/mnt:/data   -p 8300:8300   -p 8301:8301  -p 8301:8301/udp  -p 8302:8302  -p 8302:8302/udp  -p 8400:8400   -p 8500:8500   -p 8600:53/udp --restart=always  10.39.101.226:5000/progrium/consul -server -advertise 10.39.101.226 -bootstrap-expect 2
- 
-  - name: Build Service Registrator container ...
-    shell: docker run -it --restart=always --name service.registrator -h 10.39.101.226 -d -v /var/run/docker.sock:/tmp/docker.sock gliderlabs/registrator:latest consul://10.39.101.226:8500   
- 
-- hosts: 107_124_server
-  remote_user: jenkins
-  tasks:
-  - name: Build Consul client container...
-    shell:  docker run -d --name consul.server -h consul.node2 -v /cloud.config/deployment/consul.server/mnt:/data  -p 8300:8300    -p 8301:8301     -p 8301:8301/udp     -p 8302:8302     -p 8302:8302/udp     -p 8400:8400     -p 8500:8500   -p 8600:53/udp  --restart=always 10.39.101.226:5000/progrium/consul -server -advertise 10.39.107.124 -join 10.39.101.226
- 
-  - name: Build Service Registrator container ...
-    shell: docker run -it --restart=always --name service.registrator -h 10.39.107.124 -d -v /var/run/docker.sock:/tmp/docker.sock gliderlabs/registrator:latest consul://10.39.101.226:8500   
- 
- 
      
 
 
