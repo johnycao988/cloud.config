@@ -1,0 +1,3 @@
+cd $WORKSPACE/deployment/config/
+
+ansible-playbook -i $WORKSPACE/deployment/config/ansible.hosts ansible.yml
