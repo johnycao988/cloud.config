@@ -5,8 +5,51 @@
   remote_user: jenkins
   tasks:
     - name: Stop consul-template service ...
-      shell: ANSIBLE_CMD=service consul-template stop && echo $ANSIBLE_CMD && $ANSIBLE_CMD    
+      shell: service consul-template stop    
       ignore_errors: yes 
+    - name: Remove Service Registrator containers ...
+      shell: docker rm -f service.registrator   
+      ignore_errors: yes 
+    - name: Remove Consul Server containers ...
+      shell: docker rm -f consul.server    
+      ignore_errors: yes 
+    - name: Remove mnt folder ...
+      sudo: yes
+      shell: sudo rm -r {{MNT_FOLDER}}   
+      ignore_errors: yes 
+    - name: Create mnt folder ...
+      sudo: yes
+      shell: sudo mkdir {{MNT_FOLDER}}  && chmod +w  {{MNT_FOLDER}}
+
+
+- vars_files:
+     - vars.yml
+  hosts: "{{MASTER_SERVER}}"
+  remote_user: jenkins
+  tasks:
+    - name: Build Consul Master Server container....
+      shell: docker run  -d --name consul.server -h consul.node1 -v {{MNT_FOLDER}}:/data   -p 8300:8300   -p 8301:8301  -p 8301:8301/udp  -p 8302:8302  -p 8302:8302/udp  -p 8400:8400   -p 8500:8500   -p 8600:53/udp --restart=always  {{DOCKER_REP_NAME}} -server -advertise {{MASTER_SERVER_IP}}-bootstrap-expect 2       
+    - name: Build Service Registrator container on Master ...
+      shell: docker run -it --restart=always --name service.registrator -h {{MASTER_SERVER_IP}} -d -v /var/run/docker.sock:/tmp/docker.sock gliderlabs/registrator:latest consul://{{MASTER_SERVER_IP}}:8500   
+ 
+- vars_files:
+     - vars.yml
+  hosts: "{{SLAVE_SERVER1}}"
+  remote_user: jenkins
+  tasks:
+    - name: Build Consul slave1 container...
+      shell:  docker run -d --name consul.server -h consul.node2 -v {{MNT_FOLDER}}:/data  -p 8300:8300    -p 8301:8301     -p 8301:8301/udp     -p 8302:8302     -p 8302:8302/udp     -p 8400:8400     -p 8500:8500   -p 8600:53/udp  --restart=always {{DOCKER_REP_NAME}} -server -advertise {{SLAVE_SERVER1_IP}} -join {{MASTER_SERVER_IP}}
+ 
+    - name: Build Service Registrator container on Slave1 server...
+      shell: docker run -it --restart=always --name service.registrator -h {{SLAVE_SERVER1_IP}} -d -v /var/run/docker.sock:/tmp/docker.sock gliderlabs/registrator:latest consul://{{MASTER_SERVER_IP}}:8500   
+
+- vars_files:
+     - vars.yml
+  hosts: "{{MASTER_SERVER}}"
+  remote_user: jenkins
+  tasks:
+    - name: Start consul-template service on Master server...
+      shell: service consul-template start    
  
       
 
