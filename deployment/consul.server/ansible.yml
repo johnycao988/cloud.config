@@ -51,7 +51,7 @@
     - name: Start consul-template service on Master server...
       shell: service consul-template start    
  
-     
+      
 
 
 
