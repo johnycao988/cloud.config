@@ -1,4 +1,5 @@
-CONF_FOLDER: /cloud.config/deployment/nginx.server/nginx.conf 
+CONF_FOLDER: /cloud.config/deployment/nginx.server/nginx.conf
+CONF_TMP_FILE: /cloud.config/deployment/nginx.server/nginx.tmpl  
 ALL_NGINX_SERVERS: all_servers 
 DOCKER_IMG_NAME: 10.39.101.226:5000/nginx
 PORTS: -p 3001:3001 -p 8501:8501 -p 7099:7099 -p 7098:7098
