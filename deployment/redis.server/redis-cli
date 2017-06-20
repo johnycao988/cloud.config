@@ -1,0 +1,11 @@
+# install redis-cli
+- apt-get update
+- apt-get install redis-tools
+
+
+redis-cli -a redis  ### -a is for password
+- select 0
+- keys *
+- set key value
+- del key value
+ 
