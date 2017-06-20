@@ -1,7 +1,7 @@
 ---
 - vars_files:
      - vars.yml
-  hosts: "{{ALL_CONSUL_SERVERS}}"
+  hosts: "{{ALL_REDIS_SERVERS}}"
   remote_user: jenkins
   tasks:
     - name: Remove Redis Server containers ...
