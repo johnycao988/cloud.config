@@ -30,13 +30,13 @@
 	<logger name="cloud.security.client">
 		<level value="debug" />
 		<appender-ref ref="DailyRollingFileAppender" />
-		<appender-ref ref="ELKAppender" />
 	</logger>
 
 
 	<root>
-		<priority value="info" />
+		<priority value="debug" />
 		<appender-ref ref="ConsoleAppender" />
+		<appender-ref ref="ELKAppender" />		
 	</root>
 
 </log4j:configuration>
