@@ -1,4 +1,5 @@
-CONF_FOLDER: /cloud.config/deployment/redis.server/redis.conf
+MASTER_CONF_FOLDER: /cloud.config/deployment/redis.server/redis.master.conf
+SLAVE_CONF_FOLDER: /cloud.config/deployment/redis.server/redis.slave.conf
 ALL_REDIS_SERVERS: all_servers
 MASTER_SERVER: 10.39.101.226
 SLAVE_SERVER1: 10.39.107.124
