@@ -16,7 +16,7 @@
     - name: docker run  {{PORTS}}  -v {{CONF_FOLDER}}:/etc/nginx/nginx.conf --name nginx.server  -d {{DOCKER_IMG_NAME}}
       shell: docker run  {{PORTS}}  -v {{CONF_FOLDER}}:/etc/nginx/nginx.conf --name nginx.server  -d {{DOCKER_IMG_NAME}}
   
-    - name: copy consul-template service...
+    - name: sudo cp {{CONF_TMP_FILE}} /etc/init.d
       copy: sudo cp {{CONF_TMP_FILE}} /etc/init.d
       
     - name: Create consul-template service...
