@@ -18,7 +18,7 @@
   
     - name: sudo cp {{CONF_SERVICE_FILE}} /etc/init.d/consul-template.service
       sudo: yes
-      copy: sudo cp {{CONF_SERVICE_FILE}} /etc/init.d/consul-template.service && sudo chmod +x /etc/init.d/consul-template.service
+      shell: sudo cp {{CONF_SERVICE_FILE}} /etc/init.d/consul-template.service && sudo chmod +x /etc/init.d/consul-template.service
       
     - name: Create consul-template service...
       sudo: yes
