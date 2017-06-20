@@ -7,8 +7,8 @@
     - name: Remove redis master server container...
       shell: docker rm -f redis.master.server
       ignore_errors: yes
-    - name: docker run --restart=always -d -p 6379:6379 -v {{MASTER_CONF_FOLDER}}:/usr/local/etc/redis/redis.conf --name redis.master.server {{DOCKER_REP_NAME}} redis-server /usr/local/etc/redis/redis.conf
-      shell: docker run --restart=always -d -p 6379:6379 -v {{MASTER_CONF_FOLDER}}:/usr/local/etc/redis/redis.conf --name redis.master.server {{DOCKER_REP_NAME}} redis-server /usr/local/etc/redis/redis.conf
+    - name: docker run --restart=always -d -p 6379:6379 -v {{MASTER_CONF_FOLDER}}:/usr/local/etc/redis/redis.conf --name redis.master.server {{DOCKER_IMG_NAME}} redis-server /usr/local/etc/redis/redis.conf
+      shell: docker run --restart=always -d -p 6379:6379 -v {{MASTER_CONF_FOLDER}}:/usr/local/etc/redis/redis.conf --name redis.master.server {{DOCKER_IMG_NAME}} redis-server /usr/local/etc/redis/redis.conf
 
 - vars_files:
      - vars.yml
@@ -18,8 +18,8 @@
     - name: Remove redis slave server container...
       shell: docker rm -f redis.slave.server
       ignore_errors: yes
-    - name: docker run --restart=always -d -p 6379:6379 -v {{SLAVE_CONF_FOLDER}}:/usr/local/etc/redis/redis.conf --name redis.slave.server {{DOCKER_REP_NAME}} redis-server /usr/local/etc/redis/redis.conf
-      shell: docker run --restart=always -d -p 6379:6379 -v {{SLAVE_CONF_FOLDER}}:/usr/local/etc/redis/redis.conf --name redis.slave.server {{DOCKER_REP_NAME}} redis-server /usr/local/etc/redis/redis.conf
+    - name: docker run --restart=always -d -p 6379:6379 -v {{SLAVE_CONF_FOLDER}}:/usr/local/etc/redis/redis.conf --name redis.slave.server {{DOCKER_IMG_NAME}} redis-server /usr/local/etc/redis/redis.conf
+      shell: docker run --restart=always -d -p 6379:6379 -v {{SLAVE_CONF_FOLDER}}:/usr/local/etc/redis/redis.conf --name redis.slave.server {{DOCKER_IMG_NAME}} redis-server /usr/local/etc/redis/redis.conf
  
    
 
