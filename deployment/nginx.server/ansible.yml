@@ -4,11 +4,25 @@
   hosts: "{{ALL_NGINX_SERVERS}}"
   remote_user: jenkins
   tasks:
+    - name: Remove consul-template services...
+      shell: service stop consul-template || update-rc.d consul-template remove
+      sudo: yes
+      ignore_errors: yes
+ 
     - name: Remove nginxr server containers...
       shell: docker rm -f nginx.server
       ignore_errors: yes
+  
     - name: docker run  {{PORTS}}  -v {{CONF_FOLDER}}:/etc/nginx/nginx.conf --name nginx.server  -d {{DOCKER_IMG_NAME}}
       shell: docker run  {{PORTS}}  -v {{CONF_FOLDER}}:/etc/nginx/nginx.conf --name nginx.server  -d {{DOCKER_IMG_NAME}}
+  
+    - name: copy consul-template service...
+      copy: src=consul-template.service dest=/etc/init.d
+      
+    - name: Create consul-template service...
+      sudo: yes
+      shell: sudo chmod +x ./consul-template.service && sudo update-rc.d consul-template.service defaults && sudo service consul-template.service start
+   
       
 
  

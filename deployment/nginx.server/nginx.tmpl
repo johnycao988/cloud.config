@@ -1,0 +1,179 @@
+user www-data;
+worker_processes 4;
+pid /run/nginx.pid;
+
+events {
+        worker_connections 768;
+        # multi_accept on;
+}
+
+http {
+
+   upstream cloud-config-service {   
+   {{range service "cloud-config-service"}}
+    server {{.Address}}:{{.Port}} weight=1;
+    {{end}}  
+ }
+ 
+   upstream cloud-security-service {   
+   {{range service "cloud-security-service-3089"}}
+    server {{.Address}}:{{.Port}}  weight=1; 
+    {{end}} 
+ }
+ 
+   upstream consul-server {   
+   {{range service "consul-8500"}}
+    server {{.Address}}:{{.Port}}  weight=1; 
+    {{end}} 
+ }
+ 
+    upstream cloud-security-client {   
+   {{range service "cloud-security-client-3000"}}
+    server {{.Address}}:{{.Port}}  weight=1; 
+    {{end}} 
+ }
+        ##
+        # Basic Settings
+        ##
+
+        sendfile on;
+        tcp_nopush on;
+        tcp_nodelay on;
+        keepalive_timeout 65;
+        types_hash_max_size 2048;
+        # server_tokens off;
+
+        # server_names_hash_bucket_size 64;
+        # server_name_in_redirect off;
+
+        include /etc/nginx/mime.types;
+        default_type application/octet-stream;
+ ##
+        # Logging Settings
+        ##
+
+        access_log /var/log/nginx/access.log;
+        error_log /var/log/nginx/error.log;
+
+        ##
+        # Gzip Settings
+        ##
+
+        gzip on;
+        gzip_disable "msie6";
+
+        # gzip_vary on;
+        # gzip_proxied any;
+        # gzip_comp_level 6;
+        # gzip_buffers 16 8k;
+        # gzip_http_version 1.1;
+        # gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+        ##
+        # nginx-naxsi config
+        ##
+        # Uncomment it if you installed nginx-naxsi
+        ##
+
+        #include /etc/nginx/naxsi_core.rules;
+
+        ##
+        # nginx-passenger config
+        ##
+        # Uncomment it if you installed nginx-passenger
+        #include /etc/nginx/naxsi_core.rules;
+
+        ##
+        # nginx-passenger config
+        ##
+        # Uncomment it if you installed nginx-passenger
+        ##
+
+        #passenger_root /usr;
+        #passenger_ruby /usr/bin/ruby;
+
+        ##
+        # Virtual Host Configs
+        ##
+
+        include /etc/nginx/conf.d/*.conf;
+        include /etc/nginx/sites-enabled/*;
+
+        server {
+
+        listen       7099;
+
+        server_name  2;
+
+        location /{
+
+           proxy_pass http://cloud-security-service/;
+        
+        }  
+  }
+  
+    server {
+
+        listen       7098;
+
+        server_name  2;
+
+        location /{
+
+           proxy_pass http://cloud-config-service/;
+        
+        }  
+  }
+  
+    server {
+
+        listen       3001;
+
+        server_name  2;
+
+        location /{
+
+           proxy_pass http://cloud-security-client/;
+        
+        }  
+  }
+  
+  server {
+
+        listen       8501;
+
+        server_name  2; 
+        
+        location / {
+
+           proxy_pass http://consul-server/;
+        
+        } 
+    
+  }
+
+}
+
+
+#mail {
+#       # See sample authentication script at:
+#       # http://wiki.nginx.org/ImapAuthenticateWithApachePhpScript
+#
+#       # auth_http localhost/auth.php;
+#       # pop3_capabilities "TOP" "USER";
+#       # imap_capabilities "IMAP4rev1" "UIDPLUS";
+#
+#       server {
+#               listen     localhost:110;
+#               protocol   pop3;
+#               proxy      on;
+#       }
+#
+#       server {
+#               listen     localhost:143;
+#               protocol   imap;
+#               proxy      on;
+#       }
+#}
+
+                                                       
