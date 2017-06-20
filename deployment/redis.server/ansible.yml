@@ -1,22 +1,26 @@
 ---
 - vars_files:
      - vars.yml
-  hosts: "{{ALL_REDIS_SERVERS}}"
-  remote_user: jenkins
-  tasks:
-    - name: Remove Redis Server containers ...
-      shell: docker rm -f redis.server   
-      ignore_errors: yes
-
-- vars_files:
-     - vars.yml
   hosts: "{{MASTER_SERVER}}"
   remote_user: jenkins
   tasks:
-    - name: 
-      shell: docker run -d -p 6379:6379 -v {{CONF_FOLDER}}:/usr/local/etc/redis/redis.conf --name redis.server {{DOCKER_REP_NAME}} redis-server /usr/local/etc/redis/redis.conf
+    - name: Remove redis master server container...
+      shell: docker rm -f redis.master.server
+      ignore_errors: yes
+    - name: docker run -d -p 6379:6379 -v {{CONF_FOLDER}}:/usr/local/etc/redis/redis.conf --name redis.master.server {{DOCKER_REP_NAME}} redis-server /usr/local/etc/redis/redis.conf
+      shell: docker run -d -p 6379:6379 -v {{CONF_FOLDER}}:/usr/local/etc/redis/redis.conf --name redis.master.server {{DOCKER_REP_NAME}} redis-server /usr/local/etc/redis/redis.conf
  
-      
+- vars_files:
+     - vars.yml
+  hosts: "{{SLAVE_SERVER1}}"
+  remote_user: jenkins
+  tasks:
+    - name: Remove redis slave server container...
+      shell: docker rm -f redis.slave.server
+      ignore_errors: yes      
+    - name: docker run --link redis-master:redis.master.server -d -p 6379:6379 -v {{CONF_FOLDER}}:/usr/local/etc/redis/redis.conf --name redis.slave.server {{DOCKER_REP_NAME}} redis-server /usr/local/etc/redis/redis.conf 
+      shell: docker run --link redis-master:redis.master.server -d -p 6379:6379 -v {{CONF_FOLDER}}:/usr/local/etc/redis/redis.conf --name redis.slave.server {{DOCKER_REP_NAME}} redis-server /usr/local/etc/redis/redis.conf
+       
 
 
 
