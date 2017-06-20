@@ -1,8 +1,8 @@
-CONF_FOLDER: /cloud.config/deployment/consul.server/mnt
-ALL_CONSUL_SERVERS: all_servers
+CONF_FOLDER: /cloud.config/deployment/redis.server/redis.conf
+ALL_REDIS_SERVERS: all_servers
 MASTER_SERVER: 10.39.101.226
 SLAVE_SERVER1: 10.39.107.124
 MASTER_SERVER_IP: 10.39.101.226
 SLAVE_SERVER1_IP: 10.39.107.124
-DOCKER_REP_NAME: 10.39.101.226:5000/progrium/consul
+DOCKER_REP_NAME: 10.39.101.226:5000/redis
  
