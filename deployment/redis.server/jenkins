@@ -1,0 +1,8 @@
+
+Go into Jenkins->System Management->Global Properties to add
+ key: CONFIG_WOKRSPACE_PATH=
+ value: /var/jenkins_home/workspace/cloud.configs
+ 
+cd $CONFIG_WOKRSPACE_PATH/deployment/redis.server
+
+ansible-playbook -i $CONFIG_WOKRSPACE_PATH/deployment/config/ansible.hosts ansible.yml
