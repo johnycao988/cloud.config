@@ -1,0 +1,25 @@
+---
+- vars_files:
+     - vars.yml
+  hosts: "{{ALL_NGINX_SERVERS}}"
+  remote_user: jenkins
+  tasks:
+    - name: Remove nginxr server containers...
+      shell: docker rm -f nginx.server
+      ignore_errors: yes
+    - name: docker run  {{PORTS}}  -v {{CONF_FOLDER}}:/etc/nginx/nginx.conf --name nginx.server  -d {{DOCKER_IMG_NAME}}
+      shell: docker run  {{PORTS}}  -v {{CONF_FOLDER}}:/etc/nginx/nginx.conf --name nginx.server  -d {{DOCKER_IMG_NAME}}
+      
+
+ 
+   
+
+
+
+    
+    
+
+
+
+    
+    

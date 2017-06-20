@@ -5,4 +5,4 @@ Go into Jenkins->System Management->Global Properties to add
  
 cd $CONFIG_WOKRSPACE_PATH/deployment/consul.server
 
-ansible-playbook -i $CONFIG_WOKRSPACE_PATH/deployment/config/ansible.hosts ansible.yml
+ansible-playbook -i $CONFIG_WOKRSPACE_PATH/deployment/hosts/ansible.hosts ansible.yml
