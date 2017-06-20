@@ -9,9 +9,7 @@
 
 	<appender name="DailyRollingFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="Append" value="true" />
-		<param name="MaxBackupIndex" value="2" />	
 		<param name="File" value="/logs/cloud.security.service.log" />
-		<param name="MaxBackupIndex" value="3" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d{yyyy-MM-dd hh:mm:ss}:%p %t %c - %m%n" />
 		</layout>
@@ -32,13 +30,14 @@
 	<logger name="cloud.security.service">
 		<level value="DEBUG" />
 		<appender-ref ref="DailyRollingFileAppender" />
-		<appender-ref ref="ELKAppender" />
+
 	</logger>
 
 
 	<root>
 		<priority value="debug" />
 		<appender-ref ref="ConsoleAppender" />
+		<appender-ref ref="ELKAppender" />
 	</root>
 
 </log4j:configuration>
