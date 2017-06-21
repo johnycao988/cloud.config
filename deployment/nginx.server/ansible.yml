@@ -20,10 +20,18 @@
       sudo: yes
       shell: sudo cp {{CONF_SERVICE_FILE}} /etc/init.d/consul-template && sudo chmod +x /etc/init.d/consul-template
       
-    - name: Create consul-template service...
+    - name: Enable consul-template service...
       sudo: yes
-      shell: sudo update-rc.d consul-template enable && sudo update-rc.d consul-template defaults && sudo service consul-template start
-   
+      shell: sudo update-rc.d consul-template enable 
+      
+    - name: Enable consul-template service...
+      sudo: yes
+      shell: sudo update-rc.d consul-template defaults 
+       
+    - name: Start consul-template service...
+      sudo: yes
+      shell: sudo sudo update-rc.d consul-template defaults 
+      
     
 
  
