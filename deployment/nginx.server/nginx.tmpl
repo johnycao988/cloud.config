@@ -11,25 +11,25 @@ http {
 
    upstream cloud-config-service {   
    {{range service "cloud-config-service"}}
-    server {{.Address}}:{{.Port}} weight=1;
+    server {{.Address}}:{{.Port}} weight=10;
     {{end}}  
  }
  
    upstream cloud-security-service {   
    {{range service "cloud-security-service-3089"}}
-    server {{.Address}}:{{.Port}}  weight=1; 
+    server {{.Address}}:{{.Port}}  weight=10; 
     {{end}} 
  }
  
    upstream consul-server {   
    {{range service "consul-8500"}}
-    server {{.Address}}:{{.Port}}  weight=1; 
+    server {{.Address}}:{{.Port}}  weight=10; 
     {{end}} 
  }
  
     upstream cloud-security-client {   
    {{range service "cloud-security-client-3000"}}
-    server {{.Address}}:{{.Port}}  weight=1; 
+    server {{.Address}}:{{.Port}}  weight=10; 
     {{end}} 
  }
         ##
