@@ -1,6 +1,6 @@
 #! /bin/sh -e
 ### BEGIN INIT INFO
-# Provides:          CS -Johnny
+# Provides:          CS -Johnny Cao
 # Required-Start:    $remote_fs
 # Required-Stop:     $remote_fs
 # Default-Start:     2 3 4 5
@@ -35,7 +35,7 @@ status(){
               
        return $RETVAL
 }
- 
+
 case "$1" in
   start)
         start
