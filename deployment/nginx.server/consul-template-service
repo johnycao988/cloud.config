@@ -1,0 +1,46 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          CS -Johnny
+# Required-Start:    $remote_fs
+# Required-Stop:     $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start or stop the Consul Template service.
+### END INIT INFO
+
+RETVAL=0
+
+start(){
+   
+      consul-template -consul 10.39.101.226:8500  -template /cloud.config/deployment/nginx.server/nginx.tmpl:/cloud.config/deployment/nginx.server/nginx.conf:"docker restart nginx.server" &
+      echo "Consul-template service started."
+      return $RETVAL  
+}
+
+stop(){
+       
+       killall consul-template
+       echo "Consul-template service stoped."
+       return $RETVAL  
+}
+
+ 
+case "$1" in
+  start)
+        start
+		;;
+  stop)
+        stop
+        ;;
+  restart)
+       
+       sh $0 stop
+       sh $0 start
+        ;;
+   *)
+        echo "Format error!"
+        echo $"Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
+exit $RETVAL
