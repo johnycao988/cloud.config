@@ -8,30 +8,46 @@
 # Short-Description: Start or stop the Consul Template service.
 ### END INIT INFO
 RETVAL=0
+
 start(){
-      echo "start consul-template service..."
+      echo "start consul-template service..." 
       consul-template -consul 10.39.101.226:8500  -template /cloud.config/deployment/nginx.server/nginx.tmpl:/cloud.config/deployment/nginx.server/nginx.conf:"docker restart nginx.server" &
       echo "Consul-template service started."
-      return $RETVAL
+      return $RETVAL  
 }
 
 stop(){
-       echo "stop consul-template service..."
+       echo "stop consul-template service..." 
        killall consul-template
        echo "Consul-template service stoped."
-       return $RETVAL
+       return $RETVAL  
 }
 
-
+status(){
+                       
+       PCS=$(pgrep -c "consul-template")
+       
+       if [ 2 -le $PCS ];then 
+         echo "Consul Template service is running."
+       else
+        echo "Consul Template service is stopped."
+       fi 
+              
+       return $RETVAL
+}
+ 
 case "$1" in
   start)
         start
-                ;;
+		;;
   stop)
         stop
         ;;
+  status)
+        status
+        ;;
   restart)
-
+       
        sh $0 stop
        sh $0 start
         ;;
@@ -42,4 +58,3 @@ case "$1" in
         ;;
 esac
 exit $RETVAL
-        
