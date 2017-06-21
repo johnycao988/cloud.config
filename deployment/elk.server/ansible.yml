@@ -1,0 +1,33 @@
+---
+- vars_files:
+     - vars.yml
+  hosts: "{{ALL_ELK_SERVERS}}"
+  remote_user: jenkins
+  tasks:
+
+    - name: Remove Kibana server containers...
+      shell: docker rm -f kibana.server
+      ignore_errors: yes
+
+    - name: Remove logstash server containers...
+      shell: docker rm -f logstash.server
+      ignore_errors: yes
+      
+    - name:  Create logstash server containers...
+      shell: docker run --restart=always -d  -v /elk/logstash/config:/config-dir -p 3456:3456 --name logstash.server logstash -f /config-dir/logstash.conf
+
+    - name:  Create kibana server containers...
+      shell: docker run --restart=always -d --name kibana.server -v /elk/kibana:/etc/kibana -p 5601:5601 kibana
+      
+
+ 
+
+
+
+    
+    
+
+
+
+    
+    

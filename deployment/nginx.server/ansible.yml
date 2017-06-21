@@ -13,8 +13,8 @@
       shell: docker rm -f nginx.server
       ignore_errors: yes
   
-    - name: docker run  {{PORTS}}  -v {{CONF_FOLDER}}:/etc/nginx/nginx.conf --name nginx.server  -d {{DOCKER_IMG_NAME}}
-      shell: docker run  {{PORTS}}  -v {{CONF_FOLDER}}:/etc/nginx/nginx.conf --name nginx.server  -d {{DOCKER_IMG_NAME}}
+    - name: docker run --restart=always  {{PORTS}}  -v {{CONF_FOLDER}}:/etc/nginx/nginx.conf --name nginx.server  -d {{DOCKER_IMG_NAME}}
+      shell: docker run --restart=always  {{PORTS}}  -v {{CONF_FOLDER}}:/etc/nginx/nginx.conf --name nginx.server  -d {{DOCKER_IMG_NAME}}
   
     - name: sudo cp {{CONF_SERVICE_FILE}} /etc/init.d/consul-template-service
       sudo: yes
