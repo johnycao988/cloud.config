@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/sh -e
 ### BEGIN INIT INFO
 # Provides:          CS -Johnny
 # Required-Start:    $remote_fs
@@ -7,33 +7,31 @@
 # Default-Stop:      0 1 6
 # Short-Description: Start or stop the Consul Template service.
 ### END INIT INFO
-
 RETVAL=0
-
 start(){
-   
+      echo "start consul-template service..."
       consul-template -consul 10.39.101.226:8500  -template /cloud.config/deployment/nginx.server/nginx.tmpl:/cloud.config/deployment/nginx.server/nginx.conf:"docker restart nginx.server" &
       echo "Consul-template service started."
-      return $RETVAL  
+      return $RETVAL
 }
 
 stop(){
-       
+       echo "stop consul-template service..."
        killall consul-template
        echo "Consul-template service stoped."
-       return $RETVAL  
+       return $RETVAL
 }
 
- 
+
 case "$1" in
   start)
         start
-		;;
+                ;;
   stop)
         stop
         ;;
   restart)
-       
+
        sh $0 stop
        sh $0 start
         ;;
@@ -44,3 +42,4 @@ case "$1" in
         ;;
 esac
 exit $RETVAL
+        
