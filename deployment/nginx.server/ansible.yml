@@ -23,13 +23,13 @@
     - name: Enable consul-template service...
       sudo: yes
       shell: sudo update-rc.d consul-template-service enable
-      igore_errors: yes 
-      
+      ignore_errors: yes
+     
     - name: Set consul-template service to start at boot
       sudo: yes
       shell: sudo update-rc.d consul-template-service defaults 
-      igore_errors: yes
-       
+      ignore_errors: yes
+     
     - name: Start consul-template service...
       sudo: yes
       shell: sudo service consul-template-service start 
