@@ -18,13 +18,13 @@ action.auto_create_index: true
 #
 # Use a descriptive name for your cluster:
 #
-cluster.name: elastic-cluster
+#cluster.name: elastic-cluster
 #
 # ------------------------------------ Node ------------------------------------
 #
 # Use a descriptive name for the node:
 #
-node.name: node-master
+#node.name: node-master
 #
 # Add custom attributes to the node:
 #
