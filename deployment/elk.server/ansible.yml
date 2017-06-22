@@ -14,7 +14,7 @@
       ignore_errors: yes
       
     - name:  Create logstash server containers...
-      shell: docker run --restart=always -d  -v /elk/logstash/config:/config-dir -p 3456:3456 --name logstash.server logstash -f /config-dir/logstash.conf
+      shell: docker run --restart=always -d  -v {{LOGSTASH_CONF_FOLDER}}:/config-dir -p 3456:3456 --name logstash.server logstash -f /config-dir/logstash.conf
 
     - name:  Create kibana server containers...
       shell: docker run --restart=always -d --name kibana.server -v {{KIBANA_CONF_FOLDER}}:/etc/kibana -p 5601:5601 kibana
