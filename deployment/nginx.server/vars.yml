@@ -2,5 +2,12 @@ CONF_FOLDER: /cloud.config/deployment/nginx.server/nginx.conf
 CONF_SERVICE_FILE: /cloud.config/deployment/nginx.server/consul-template-service  
 ALL_NGINX_SERVERS: all_servers 
 DOCKER_IMG_NAME: 10.39.101.226:5000/nginx
-PORTS: -p 3001:3001 -p 8501:8501 -p 7099:7099 -p 7098:7098
+
+# 3001 - security.client (3000), 
+# 7099 - security.service (3089)
+# 7098 - config.service (3088)
+# 8501 - consul.server (8500)
+# 3457 - Logstash(3456)
+# 5602 - Kibana (5601)
+PORTS: -p 3001:3001 -p 8501:8501 -p 7099:7099 -p 7098:7098 -p 3457:3457 -p 5602:5602
  

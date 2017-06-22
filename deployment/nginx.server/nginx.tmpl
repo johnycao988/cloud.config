@@ -11,27 +11,42 @@ http {
 
    upstream cloud-config-service {   
    {{range service "cloud-config-service"}}
-    server {{.Address}}:{{.Port}} weight=10;
+    server {{.Address}}:{{.Port}} weight=1;
     {{end}}  
  }
  
    upstream cloud-security-service {   
    {{range service "cloud-security-service-3089"}}
-    server {{.Address}}:{{.Port}}  weight=10; 
+    server {{.Address}}:{{.Port}}  weight=1; 
     {{end}} 
  }
  
    upstream consul-server {   
    {{range service "consul-8500"}}
-    server {{.Address}}:{{.Port}}  weight=10; 
+    server {{.Address}}:{{.Port}}  weight=1; 
     {{end}} 
  }
  
     upstream cloud-security-client {   
    {{range service "cloud-security-client-3000"}}
-    server {{.Address}}:{{.Port}}  weight=10; 
+    server {{.Address}}:{{.Port}}  weight=1; 
     {{end}} 
  }
+ 
+     upstream elk-logstash {   
+   {{range service "logstash"}}
+    server {{.Address}}:{{.Port}}  weight=1; 
+    {{end}} 
+ }
+ 
+     upstream elk-kibana {   
+   {{range service "kibana"}}
+    server {{.Address}}:{{.Port}}  weight=1; 
+    {{end}} 
+ }
+ 
+ 
+ 
         ##
         # Basic Settings
         ##
@@ -151,6 +166,39 @@ http {
         } 
     
   }
+  
+  
+   
+  server {
+
+        listen      3457;
+
+        server_name  2; 
+        
+        location / {
+
+           proxy_pass http://elk-logstash/;
+        
+        } 
+    
+  }
+  
+   
+  server {
+
+        listen       5602;
+
+        server_name  2; 
+        
+        location / {
+
+           proxy_pass http://elk-kibana/;
+        
+        } 
+    
+  }
+  
+ #end server 
 
 }
 

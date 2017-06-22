@@ -2,7 +2,7 @@ version: 1
 
 #!RESULT OK
 #!CONNECTION ldap://10.39.101.226:10389
-#!DATE 2017-06-21T16:55:19.108
+#!DATE 2017-06-22T08:08:42.759
 dn: dc=example,dc=com
 objectclass: top
 objectclass: domain
@@ -10,7 +10,7 @@ dc: example
 
 #!RESULT OK
 #!CONNECTION ldap://10.39.101.226:10389
-#!DATE 2017-06-21T16:55:20.002
+#!DATE 2017-06-22T08:08:43.637
 dn: ou=users,dc=example,dc=com
 objectClass: organizationalUnit
 objectClass: top
@@ -18,7 +18,7 @@ ou: users
 
 #!RESULT OK
 #!CONNECTION ldap://10.39.101.226:10389
-#!DATE 2017-06-21T16:55:20.889
+#!DATE 2017-06-22T08:08:44.699
 dn: ou=userGroups,dc=example,dc=com
 objectClass: top
 objectClass: organizationalUnit
@@ -26,7 +26,7 @@ ou: userGroups
 
 #!RESULT OK
 #!CONNECTION ldap://10.39.101.226:10389
-#!DATE 2017-06-21T16:55:21.866
+#!DATE 2017-06-22T08:08:45.568
 dn: uid=bin.bai,ou=users,dc=example,dc=com
 objectClass: top
 objectClass: inetOrgPerson
@@ -39,7 +39,7 @@ userPassword:: e01ENX1yZEtJSE40VENZbWZVQlg2cHJ6KzZnPT0=
 
 #!RESULT OK
 #!CONNECTION ldap://10.39.101.226:10389
-#!DATE 2017-06-21T16:55:22.961
+#!DATE 2017-06-22T08:08:46.421
 dn: uid=johnny.cao,ou=users,dc=example,dc=com
 objectClass: top
 objectClass: inetOrgPerson
@@ -52,7 +52,7 @@ userPassword:: e01ENX1yZEtJSE40VENZbWZVQlg2cHJ6KzZnPT0=
 
 #!RESULT OK
 #!CONNECTION ldap://10.39.101.226:10389
-#!DATE 2017-06-21T16:55:23.847
+#!DATE 2017-06-22T08:08:47.276
 dn: uid=bill.wu,ou=users,dc=example,dc=com
 objectClass: top
 objectClass: inetOrgPerson
@@ -71,7 +71,7 @@ userPassword:: e01ENX1yZEtJSE40VENZbWZVQlg2cHJ6KzZnPT0=
 
 #!RESULT OK
 #!CONNECTION ldap://10.39.101.226:10389
-#!DATE 2017-06-21T16:55:24.567
+#!DATE 2017-06-22T08:08:48.260
 dn: cn=admin,ou=userGroups,dc=example,dc=com
 objectClass: top
 objectClass: groupOfNames
@@ -84,7 +84,7 @@ member: uid=johnny.cao,ou=users,dc=example,dc=com
 
 #!RESULT OK
 #!CONNECTION ldap://10.39.101.226:10389
-#!DATE 2017-06-21T16:55:25.277
+#!DATE 2017-06-22T08:08:48.998
 dn: cn=manager,ou=userGroups,dc=example,dc=com
 objectClass: top
 objectClass: groupOfNames
