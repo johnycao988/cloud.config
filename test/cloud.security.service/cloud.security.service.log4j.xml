@@ -26,7 +26,6 @@
 			<param name="ConversionPattern" value="%d - %c -%-4r [%t] %-5p %x - %m%n" />
 		</layout>
 	</appender>
-
 	<logger name="cloud.security.service">
 		<level value="DEBUG" />
 		<appender-ref ref="DailyRollingFileAppender" />	
