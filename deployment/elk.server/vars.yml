@@ -5,3 +5,5 @@ MASTER_SERVER_IP: 10.39.101.226
 SLAVE_SERVER1_IP: 10.39.107.124
 KIBANA_CONF_FOLDER: /cloud.config/deployment/elk.server/kibana
 LOGSTASH_CONF_FOLDER: /cloud.config/deployment/elk.server/logstash
+ELASTIC_CONF_FOLDER: /cloud.config/deployment/elk.server/elastic/conf
+ELASTIC_DATA_FOLDER: /cloud.config/deployment/elk.server/elastic/data
