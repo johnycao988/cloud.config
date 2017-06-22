@@ -9,18 +9,22 @@
 #
 # Please consult the documentation for further information on configuration options:
 # https://www.elastic.co/guide/en/elasticsearch/reference/index.html
+
+http.host: 0.0.0.0
+action.auto_create_index: true 
+
 #
 # ---------------------------------- Cluster -----------------------------------
 #
 # Use a descriptive name for your cluster:
 #
-#cluster.name: my-application
+cluster.name: elastic-cluster
 #
 # ------------------------------------ Node ------------------------------------
 #
 # Use a descriptive name for the node:
 #
-#node.name: node-1
+node.name: node-master
 #
 # Add custom attributes to the node:
 #
