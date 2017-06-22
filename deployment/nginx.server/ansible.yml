@@ -5,7 +5,7 @@
   remote_user: jenkins
   tasks:
     - name: Remove consul-template services...
-      shell: sudo service stop consul-template-service || sudo update-rc.d -f consul-template-service remove
+      shell: sudo service consul-template-service stop || sudo update-rc.d -f consul-template-service remove
       sudo: yes
       ignore_errors: yes
  
