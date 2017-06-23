@@ -17,8 +17,8 @@
 
 	<appender name="ELKAppender"
 		class="org.apache.log4j.net.SocketAppender">
-		<param name="remoteHost" value="10.39.107.124" /><!-- 这是远程log server -->
-		<param name="port" value="3457" /><!-- 这是远程log server port -->
+		<param name="remoteHost" value="10.39.101.226" /><!-- 这是远程log server -->
+		<param name="port" value="3456" /><!-- 这是远程log server port -->
 		<param name="Threshold" value="DEBUG" /><!-- log 级别 -->
 		<param name="ReconnectionDelay" value="1000" />
 		<param name="LocationInfo" value="true" />
