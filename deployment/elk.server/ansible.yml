@@ -27,8 +27,7 @@
       shell: docker run --restart=always -d -p9200:9200 -p9300:9300 -v {{ELASTIC_CONF_FOLDER}}:/usr/share/elasticsearch/config -v {{ELASTIC_DATA_FOLDER}}:/usr/share/elasticsearch/data  --name elastic.server elasticsearch
             
     - name:  Create logstash server containers...
-      shell: docker run --restart=always -d  -v {{LOGSTASH_CONF_FOLDER}}:/config-dir -p 3456:3456 --name logstash.server logstash -f /config-dir/logstash.conf
- 
+      shell: docker run -d --restart=always -v {{LOGSTASH_CONF_FOLDER}}:/config-dir -p 3456:3456 --name logstash.server logstash -f /config-dir/logstash.conf
     - name:  Create kibana server containers...
       shell: docker run --restart=always -d --name kibana.server -v {{KIBANA_CONF_FOLDER}}:/etc/kibana -p 5601:5601 kibana
       
