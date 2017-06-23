@@ -16,6 +16,12 @@
     - name: Remove Elastic server containers...
       shell: docker rm -f elastic.server
       ignore_errors: yes
+      
+    - name: Remove Elastic data ...
+      sudo: yes
+      shell: rm -r {{ELASTIC_DATA_FOLDER}}
+      ignore_errors: yes
+      
             
     - name:  Create elastic server containers...
       shell: docker run --restart=always -d -p9200:9200 -p9300:9300 -v {{ELASTIC_CONF_FOLDER}}:/usr/share/elasticsearch/config -v {{ELASTIC_DATA_FOLDER}}:/usr/share/elasticsearch/data  --name elastic.server elasticsearch
