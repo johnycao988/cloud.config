@@ -1,0 +1,25 @@
+---
+- vars_files:
+     - vars.yml
+  hosts: "{{MASTER_SERVER}}"
+  remote_user: jenkins
+  tasks:
+    - name: Removing docker registry container...
+      shell: docker rm -f redis.master.server
+      ignore_errors: yes
+  
+    - name: Buiding docker registry container...
+      shell: docker run --restart=always -d -p 5000:5000 -v {{REGISTRY_FOLDER}}:/var/lib/registry registry
+      
+
+ 
+
+
+
+    
+    
+
+
+
+    
+    
