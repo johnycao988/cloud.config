@@ -1,7 +1,7 @@
 CONF_FOLDER: /cloud.config/deployment/nginx.server/nginx.conf
 CONF_SERVICE_FILE: /cloud.config/deployment/nginx.server/consul-template-service  
 ALL_NGINX_SERVERS: all_servers 
-DOCKER_IMG_NAME: 10.39.101.226:5000/nginx
+DOCKER_IMG_NAME: 10.39.101.226:5000/nginx:1.13
 
 # 3001 - security.client (3000), 
 # 7099 - security.service (3089)
