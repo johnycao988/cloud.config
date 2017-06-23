@@ -18,7 +18,7 @@
       ignore_errors: yes
             
     - name:  Create elastic server containers...
-      shell: docker run --restart=always -d -p9200:9200 -p9300:9300 -v {{ELASTIC_CONF_FOLDER}}:/usr/share/elastic/config -v {{ELASTIC_DATA_FOLDER}}:/usr/share/elastic/data  --name elastic.server elasticsearch
+      shell: docker run --restart=always -d -p9200:9200 -p9300:9300 -v {{ELASTIC_CONF_FOLDER}}:/usr/share/elasticsearch/config -v {{ELASTIC_DATA_FOLDER}}:/usr/share/elasticsearch/data  --name elastic.server elasticsearch
             
     - name:  Create logstash server containers...
       shell: docker run --restart=always -d  -v {{LOGSTASH_CONF_FOLDER}}:/config-dir -p 3456:3456 --name logstash.server logstash -f /config-dir/logstash.conf
