@@ -4,8 +4,8 @@
   tasks:
   - name: Fetch cloud config files...
 #    shell: cd /cloud.config && git fetch && git merge origin/master
-#    shell: cd /cloud.config && git fetch --all && git reset --hard origin/master  && git pull
-    shell: cd /cloud.config && git pull
+    shell: cd /cloud.config && git fetch --all && git reset --hard origin/master  && git pull
+#    shell: cd /cloud.config && git pull
   - name: Refresh Security service and client ..
     shell: curl http://localhost:3089/refresh || curl http://localhost:3000/refresh
     
