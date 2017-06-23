@@ -8,30 +8,20 @@ events {
 }
 
 
-tcp{
-
-
-     upstream elk-logstash {   
-   {{range service "logstash"}}
-    server {{.Address}}:{{.Port}}  weight=1; 
-    {{end}} 
- }
+# tcp{
+#     upstream elk-logstash {   
+#   {{range service "logstash"}}
+#    server {{.Address}}:{{.Port}}  weight=1; 
+#    {{end}} 
+#  }
  
- 
-    
-  server {
-
-        listen      3457;
-
-        proxy_connect_timeout 20s;                              
-        proxy_timeout 5m;                                       
-        proxy_pass elk-logstash;  
-    
-  }
- 
- 
-
-}
+#  server {
+#        listen      3457;
+#        proxy_connect_timeout 20s;                              
+#        proxy_timeout 5m;                                       
+#        proxy_pass elk-logstash;  
+#   }
+#   }
 
 
 http {
