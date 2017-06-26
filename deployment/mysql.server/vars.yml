@@ -1,3 +1,3 @@
-MYSQL_DATA_FOLDER: /cloud.config/deployment/mysql.server/data
+MYSQL_DATA_FOLDER: /cloud.config/deployment/mysql.server/mysql
 MASTER_SERVER: 10.39.101.226
  
