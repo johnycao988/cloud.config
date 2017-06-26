@@ -4,8 +4,8 @@
   hosts: "{{MASTER_SERVER}}"
   remote_user: jenkins
   tasks:
-    - name: Removing mysql.server container...
-      shell: docker rm -f sonarqube.server
+    - name: Removing nexus.server container...
+      shell: docker rm -f nexus.server
       ignore_errors: yes
   
     - name: Buiding sonarqube.server container...
