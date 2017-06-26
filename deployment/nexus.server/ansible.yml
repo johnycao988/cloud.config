@@ -9,7 +9,7 @@
       ignore_errors: yes
   
     - name: Buiding sonarqube.server container...
-      shell: docker run -d --restart=always --name=nexus.server -p 8081:8081 -v {{NEXUS_DATA_FOLDER}}:/sonatype-work {{DOCKER_IMG_NAME}} 
+      shell: docker run -d --restart=always --name=nexus.server -p 8081:8081  {{DOCKER_IMG_NAME}} 
       
       
 
