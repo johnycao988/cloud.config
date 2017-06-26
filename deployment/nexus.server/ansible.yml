@@ -1,0 +1,26 @@
+---
+- vars_files:
+     - vars.yml
+  hosts: "{{MASTER_SERVER}}"
+  remote_user: jenkins
+  tasks:
+    - name: Removing mysql.server container...
+      shell: docker rm -f sonarqube.server
+      ignore_errors: yes
+  
+    - name: Buiding sonarqube.server container...
+      shell: docker run -d --restart=always --name=nexus.server -p 8081:8081 -v {{NEXUS_DATA_FOLDER}}:/sonatype-work {{DOCKER_IMG_NAME}} 
+      
+      
+
+ 
+
+
+
+    
+    
+
+
+
+    
+    
