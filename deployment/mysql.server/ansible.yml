@@ -9,7 +9,7 @@
       ignore_errors: yes
   
     - name: Buiding mysql.server container...
-      shell: docker run -v {{MYSQL_DATA_FOLDER}}:/var/lib/mysql  --restart=always --name=mysql.server -d -e MYSQL_ROOT_PASSWORD=mysql -p 3306:3306 mysql
+      shell: docker run -v {{MYSQL_DATA_FOLDER}}:/var/lib/mysql  --restart=always --name=mysql.server -d -e MYSQL_ROOT_PASSWORD=mysql -p 3306:3306 {{DOCKER_IMG_NAME}}
       
       
 
