@@ -1,0 +1,26 @@
+---
+- vars_files:
+     - vars.yml
+  hosts: "{{MASTER_SERVER}}"
+  remote_user: jenkins
+  tasks:
+    - name: Removing mysql.server container...
+      shell: docker rm -f sonarqube.server
+      ignore_errors: yes
+  
+    - name: Buiding sonarqube.server container...
+      shell: docker run -d --restart=always --name=sonarqube.server -p 9000:9000 -p 9092:9092 {{DOCKER_IMG_NAME}} -Dsonar.jdbc.username={{JDBC_USER_NAME}} -Dsonar.jdbc.password={{JDBC_USER_PASSWORD}} -Dsonar.jdbc.url={{JDBC_URL}}
+      
+      
+
+ 
+
+
+
+    
+    
+
+
+
+    
+    

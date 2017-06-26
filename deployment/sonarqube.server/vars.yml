@@ -1,0 +1,5 @@
+MASTER_SERVER: 10.39.101.226
+DOCKER_IMG_NAME: 10.39.101.226:5000/sonarqube
+JDBC_USER_NAME: sonar
+JDBC_USER_PASSWORD: sonar
+JDBC_URL: jdbc:mysql://10.39.101.226:3306/sonar?useUnicode=true\&characterEncoding=utf8\&rewriteBatchedStatements=true\&useConfigs=maxPerformance\&rewriteBatchedStatements=true 
