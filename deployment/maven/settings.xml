@@ -127,7 +127,7 @@ under the License.
     -->
       
      <server>
-        <id>cs_release</id>
+        <id>nexus</id>
         <username>admin</username>
        <password>admin</password>
      </server> 
@@ -161,9 +161,9 @@ under the License.
      -->
      
       <mirror>
-      <id>cs_release</id>
+      <id>nexus</id>
       <mirrorOf>*</mirrorOf>
-      <url>http://10.39.101.226:8081/nexus/content/groups/cs_public</url>
+      <url>http://10.39.101.226:8081/repository/cly_public/</url>
     </mirror>
 
   </mirrors>
@@ -262,8 +262,8 @@ under the License.
         <id>nexus</id>
          <repositories>
           <repository>
-            <id>cs-release</id>
-              <url>http://10.39.101.226:8081/nexus/content/groups/cs_public</url>
+            <id>cly_public</id>
+              <url>http://10.39.101.226:8081/repository/cly_public/</url>
             <releases>
               <enabled>true</enabled>
             </releases>
