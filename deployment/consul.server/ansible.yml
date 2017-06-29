@@ -31,7 +31,7 @@
       shell: docker run  -d --name consul.server -h consul.node1 -v {{MNT_FOLDER}}:/data   -p 8300:8300   -p 8301:8301  -p 8301:8301/udp  -p 8302:8302  -p 8302:8302/udp  -p 8400:8400   -p 8500:8500   -p 8600:53/udp --restart=always  {{DOCKER_IMG_NAME}} -server -advertise {{MASTER_SERVER_IP}} -bootstrap-expect 2       
     - name: docker run  --restart=always --name service.registrator -h {{MASTER_SERVER_IP}} -d -v /var/run/docker.sock:/tmp/docker.sock gliderlabs/registrator:latest consul://{{MASTER_SERVER_IP}}:8500
       shell: docker run --restart=always --name service.registrator -h {{MASTER_SERVER_IP}} -d -v /var/run/docker.sock:/tmp/docker.sock gliderlabs/registrator:latest consul://{{MASTER_SERVER_IP}}:8500   
- 
+
 - vars_files:
      - vars.yml
   hosts: "{{SLAVE_SERVER1}}"
