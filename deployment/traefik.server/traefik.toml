@@ -1259,3 +1259,22 @@ defaultEntryPoints = ["http", "https"]
 #   backend = "backend2"
 #     rule = "Path: /test, /other"
 
+
+
+ [backends]
+   [backends.backend2]
+     [backends.backend2.LoadBalancer]
+       method = "drr"
+     [backends.backend2.servers.server1]
+     url = "http://10.39.101.226:3000"
+     weight = 1
+     [backends.backend2.servers.server2]
+     url = "http://10.39.107.124:3000"
+     weight = 1
+
+ [frontends]
+   [frontends.frontend3]
+   entrypoints = ["http", "https"] 
+ # overrides defaultEntryPoints
+   backend = "backend2"
+   rule = "Path: /test, /cloud.security.client"
