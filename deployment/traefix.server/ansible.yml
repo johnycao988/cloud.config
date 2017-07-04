@@ -1,0 +1,25 @@
+---
+- vars_files:
+     - vars.yml
+  hosts: "{{MASTER_SERVER}}"
+  remote_user: jenkins
+  tasks:
+    - name: Remove Traefik master server container...
+      shell: docker rm -f traefik.master.server
+      ignore_errors: yes
+      
+    - name:  Create Traefik master server...
+      shell: docker run --restart=always -d {{EXPOSE_PORTS}} -v {{CONFIG_FILE}}:/etc/traefik/traefik.toml -v /var/run/docker.sock:/var/run/docker.sock --name traefik.master.server {{DOCKER_IMG_NAME}}
+
+
+ 
+
+
+
+    
+    
+
+
+
+    
+    
