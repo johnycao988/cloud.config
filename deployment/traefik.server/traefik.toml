@@ -260,13 +260,13 @@ defaultEntryPoints = ["http", "https"]
    address = ":80"
 #
 # To redirect an http entrypoint to an https entrypoint (with SNI support):
- [entryPoints]
-   [entryPoints.http]
-   address = ":80"
-     [entryPoints.http.redirect]
-       entryPoint = "https"
-   [entryPoints.https]
-   address = ":443"
+# [entryPoints]
+#  [entryPoints.http]
+#   address = ":80"
+#     [entryPoints.http.redirect]
+#       entryPoint = "https"
+#   [entryPoints.https]
+#   address = ":443"
 #     [entryPoints.https.tls]
 #       [[entryPoints.https.tls.certificates]]
 #       CertFile = "integration/fixtures/https/snitest.com.cert"
