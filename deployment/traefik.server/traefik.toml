@@ -1,3 +1,7 @@
+
+ debug = true
+ logLevel = "INFO"
+ 
 defaultEntryPoints = ["http"]
 [entryPoints]
   [entryPoints.http]
