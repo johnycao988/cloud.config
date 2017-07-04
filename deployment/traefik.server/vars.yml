@@ -2,5 +2,5 @@ ALL_DS_SERVERS: all_servers
 MASTER_SERVER: 10.39.101.226
 EXPOSE_PORTS: -p 80:80 
 DOCKER_IMG_NAME: traefik
-CONFIG_FILE: cloud.config/deployment/traefik.server/traefik.toml
+CONFIG_FILE: /cloud.config/deployment/traefik.server/traefik.toml
  
