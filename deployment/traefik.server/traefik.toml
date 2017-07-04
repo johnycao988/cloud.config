@@ -17,7 +17,7 @@
 # Optional
 # Default: false
 #
-# debug = true
+  debug = true
 
 # Periodically check if a new version has been released
 #
@@ -45,7 +45,7 @@
 # Optional
 # Default: "ERROR"
 #
-# logLevel = "ERROR"
+# logLevel = "INFO"
 
 # Backends throttle duration: minimum duration in seconds between 2 events from providers
 # before applying a new configuration. It avoids unnecessary reloads if multiples events
@@ -57,7 +57,7 @@
 # Optional
 # Default: "2s"
 #
-# ProvidersThrottleDuration = "5s"
+ ProvidersThrottleDuration = "5s"
 
 # Controls the maximum idle (keep-alive) connections to keep per-host. If zero, DefaultMaxIdleConnsPerHost
 # from the Go standard library net/http module is used.
@@ -387,11 +387,11 @@ defaultEntryPoints = ["http", "https"]
 # Set REST API to read-only mode
 #
 # Optional
-# ReadOnly = false
+ ReadOnly = false
 #
 # Enable more detailed statistics
-# [web.statistics]
-#   RecentErrors = 10
+ [web.statistics]
+   RecentErrors = 10
 #
 # To enable Traefik to export internal metrics to Prometheus
 # [web.metrics.prometheus]
