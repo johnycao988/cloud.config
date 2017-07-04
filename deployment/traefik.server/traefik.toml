@@ -19,5 +19,4 @@ address = ":8080"
 [frontends]
    [frontends.frontend2]
   entrypoints = ["http"]
-  backend = "backend2"
-  rule = "Path:/test"
+  backend = "backend2" 
