@@ -254,10 +254,10 @@ defaultEntryPoints = ["http", "https"]
 # Entrypoints definition
 #
 # Optional
-# Default:
-# [entryPoints]
-#   [entryPoints.http]
-#   address = ":80"
+ Default:
+ [entryPoints]
+   [entryPoints.http]
+   address = ":80"
 #
 # To redirect an http entrypoint to an https entrypoint (with SNI support):
  [entryPoints]
