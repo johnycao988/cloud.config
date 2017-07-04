@@ -455,7 +455,7 @@ defaultEntryPoints = ["http", "https"]
 #
 # Optional
 #
-# [docker]
+ [docker]
 
 # Docker server endpoint. Can be a tcp or a unix socket endpoint.
 #
@@ -468,13 +468,13 @@ defaultEntryPoints = ["http", "https"]
 #
 # Required
 #
-# domain = "docker.localhost"
+ domain = "docker.localhost"
 
 # Enable watch docker changes
 #
 # Optional
 #
-# watch = true
+ watch = true
 
 # Override default configuration template. For advanced users :)
 #
