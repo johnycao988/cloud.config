@@ -1,2 +1,23 @@
+defaultEntryPoints = ["http"]
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+ 
 [web]
 address = ":8080"
+
+[backends]
+  [backends.backend2]
+    [backends.backend2.servers.server1]
+    url = "http://10.39.101.226:3000"
+    weight = 1
+    [backends.backend2.servers.server2]
+    url = "http://10.39.107.124:3000"
+    weight = 1
+ 
+
+[frontends]
+   [frontends.frontend2]
+  entrypoints = ["http"]
+  backend = "backend2"
+  rule = "Path:/test"
