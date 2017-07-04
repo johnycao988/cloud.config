@@ -254,7 +254,7 @@ defaultEntryPoints = ["http", "https"]
 # Entrypoints definition
 #
 # Optional
- Default:
+# Default:
  [entryPoints]
    [entryPoints.http]
    address = ":80"
