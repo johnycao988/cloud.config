@@ -1,0 +1,25 @@
+---
+- vars_files:
+     - vars.yml
+  hosts: "{{MASTER_SERVER}}"
+  remote_user: jenkins
+  tasks:
+    - name: Remove postgres master server container...
+      shell: docker rm -f postgres.master.server
+      ignore_errors: yes
+    - name: docker run --restart=always -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -d  --name postgress.master.server {{DOCKER_IMG_NAME}}
+      shell: docker run --restart=always -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -d  --name postgress.master.server {{DOCKER_IMG_NAME}}
+ 
+      
+
+ 
+
+
+
+    
+    
+
+
+
+    
+    
