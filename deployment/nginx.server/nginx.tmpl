@@ -198,6 +198,22 @@ http {
     
   }
   
+    
+  server {
+
+        listen       4200;
+
+        server_name  localhost; 
+        
+        location / {
+
+         proxy_pass   http://127.0.0.1:4200;
+
+        
+        } 
+    
+  }
+  
  #end server 
 
 }

@@ -1,26 +1,83 @@
-
  debug = true
  logLevel = "INFO"
- 
+
 defaultEntryPoints = ["http"]
 [entryPoints]
   [entryPoints.http]
   address = ":80"
- 
+
 [web]
 address = ":8080"
 
-[backends]
-  [backends.backend2]
-    [backends.backend2.servers.server1]
-    url = "http://10.39.101.226:3000"
-    weight = 1
-    [backends.backend2.servers.server2]
-    url = "http://10.39.107.124:3000"
-    weight = 1
- 
+#[docker]
+#endpoint = "unix:///var/run/docker.sock"
+#domain = "docker.10.39.101.226"
+#watch = true
+#exposedbydefault = true
+#usebindportip = true
+#swarmmode = false
 
-[frontends]
-   [frontends.frontend2]
-  entrypoints = ["http"]
-  backend = "backend2" 
+################################################################
+# Consul Catalog configuration backend
+################################################################
+
+# Enable Consul Catalog configuration backend
+#
+# Optional
+#
+ [consulCatalog]
+
+# Consul server endpoint
+#
+# Required
+#
+ endpoint = "10.39.101.226:8500"
+
+# Default domain used.
+#
+# Optional
+#
+ domain = "ms"
+
+# Prefix for Consul catalog tags
+#
+# Optional
+#
+ prefix = "traefik"
+
+# Default frontEnd Rule for Consul services
+#  - The format is a Go Template with ".ServiceName", ".Domain" and ".Attributes" available
+#  -- "getTag(name, tags, defaultValue)", "hasTag(name, tags)" and "getAttribute(name, tags, defaultValue)" functions are available
+#  --- "getAttribute(...)" function uses prefixed tag names based on "prefix" value
+#
+# Optional
+#
+frontEndRule = "Host:{{.ServiceName}}.{{Domain}}"
+
+# Should use all Consul catalog tags for constraint filtering
+#
+# Optional
+#
+#allTagsConstraintFiltering = false
+
+# Constraints
+#
+# Optional
+#
+# constraints = ["tag==api", "tag==he*ld"]
+# Matching with containers having this tag: "traefik.tags=api,helloworld"
+
+
+#[backends]
+#  [backends.backend2]
+#    [backends.backend2.servers.server1]
+#    url = "http://10.39.101.226:3000"
+#    weight = 1
+#    [backends.backend2.servers.server2]
+#    url = "http://10.39.107.124:3000"
+#    weight = 1
+
+#[frontends]
+#   [frontends.frontend2]
+#  entrypoints = ["http"]
+#  backend = "backend2"
