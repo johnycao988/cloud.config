@@ -1,0 +1,25 @@
+---
+- vars_files:
+     - vars.yml
+  hosts: "{{MASTER_SERVER}}"
+  remote_user: jenkins
+  tasks:
+    - name: Remove odoo server container...
+      shell: docker rm -f odoo.server
+      ignore_errors: yes
+    - name: docker run --restart=always -p 8069:8069  --name odoo.server --link postgress.master.server:postgress.master.server -v {{CONFIG_PATH}}:/etc/odoo  {{DOCKER_IMG_NAME}} 
+      shell: docker run --restart=always -p 8069:8069  --name odoo.server --link postgress.master.server:db -v {{CONFIG_PATH}}:/etc/odoo  {{DOCKER_IMG_NAME}}
+      
+      
+
+ 
+
+
+
+    
+    
+
+
+
+    
+    
