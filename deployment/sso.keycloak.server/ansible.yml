@@ -1,0 +1,26 @@
+---
+- vars_files:
+     - vars.yml
+  hosts: "{{MASTER_SERVER}}"
+  remote_user: jenkins
+  tasks:
+    - name: Removing sso.keycloak.server container...
+      shell: docker rm -f sso.keycloak.server
+      ignore_errors: yes
+  
+    - name: Buiding sso.keycloak.server container...
+      shell: docker run --restart=always --name=sso.keycloak.server -d -p 9980:8080 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin {{DOCKER_IMG_NAME}}
+      
+      
+
+ 
+
+
+
+    
+    
+
+
+
+    
+    
