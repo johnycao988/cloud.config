@@ -1,4 +1,4 @@
-- hosts:  "{{MASTER_SERVER}}"
+- hosts:  {{MASTER_SERVER}}
   remote_user: jenkins
   tasks: 
  
