@@ -1,5 +1,5 @@
 ---
-- hosts: all_servers
+- hosts: 10.39.101.226
   remote_user: jenkins
   tasks:
   - name: Fetch cloud config files...
