@@ -1,0 +1,3 @@
+cd $WORKSPACE/deployment/config/
+
+ansible-playbook -i $WORKSPACE/deployment/k8s-test/ansible.hosts ansible.yml

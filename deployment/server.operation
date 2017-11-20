@@ -1,0 +1,23 @@
+docker stop  cloud.security.client  cloud.security.service cloud.config.service sonarqube.server nexus.server mysql.server  kibana.server logstash.server  elastic.server  ds.master.server  sso.keycloak.server redis.master.server service.registrator consul.server nginx.server docker.registry
+
+docker start docker.registry nginx.server   consul.server service.registrator redis.master.server sso.keycloak.server ds.master.server elastic.server  logstash.server  kibana.server  mysql.server  sonarqube.server  nexus.server  cloud.config.service cloud.security.service cloud.security.client    
+  
+
+
+ 
+ 
+
+
+ 
+   
+     
+       
+        
+         
+           
+           
+           
+           
+ 
+  
+ 
