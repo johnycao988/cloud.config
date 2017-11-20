@@ -1,7 +1,6 @@
 - hosts:  {{MASTER_SERVER}}
   remote_user: jenkins
-  tasks: 
- 
+  tasks:  
   - name: Create temp folder ...
     shell: mkdir {{TEMP_FOLDER}} 
     ignore_errors: yes
