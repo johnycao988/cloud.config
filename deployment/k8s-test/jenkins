@@ -1,3 +1,3 @@
-cd $WORKSPACE/deployment/config/
+cd $CONFIG_WOKRSPACE_PATH/deployment/k8s-test
 
-ansible-playbook -i $WORKSPACE/deployment/k8s-test/ansible.hosts ansible.yml
+ansible-playbook -i $CONFIG_WOKRSPACE_PATH/deployment/k8s-test/ansible.hosts ansible.yml
